@@ -1,0 +1,51 @@
+github:
+  required_fields:
+    - full_name
+    - stargazers_count
+    - forks_count
+    - open_issues_count
+    - updated_at
+    - pushed_at
+    - default_branch
+  optional_fields:
+    - description
+    - topics
+    - language
+    - watchers_count
+
+reddit:
+  required_fields:
+    - subreddit
+    - post_id
+    - title
+    - upvote_ratio
+    - num_comments
+    - created_utc
+  optional_fields:
+    - selftext
+    - url
+    - author
+
+pypi:
+  required_fields:
+    - package_name
+    - weekly_downloads
+    - week_start
+  optional_fields:
+    - download_growth_pct
+
+
+
+hackernews:
+  required_fields:
+    - id
+    - title
+    - score
+    - descendants
+    - time
+    - type
+  optional_fields:
+    - url
+    - by
+    - text
+    - kids

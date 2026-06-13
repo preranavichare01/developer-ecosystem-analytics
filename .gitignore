@@ -1,0 +1,29 @@
+# Secrets
+.env
+config/.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Data files
+data/raw/
+data/processed/
+*.json
+*.parquet
+*.csv
+
+# Airflow
+orchestration/logs/
+
+# dbt
+transformation/target/
+transformation/dbt_packages/
+transformation/.user.yml
+
+# OS
+Thumbs.db
+.DS_Store

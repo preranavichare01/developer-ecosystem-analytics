@@ -1,0 +1,16 @@
+packages:
+  - fastapi
+  - flask
+  - django
+  - httpx
+  - pydantic
+  - pandas
+  - numpy
+  - scikit-learn
+  - torch
+  - tensorflow
+  - apache-airflow
+  - dbt-core
+  - great-expectations
+  - streamlit
+  - pyspark
