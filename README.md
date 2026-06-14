@@ -47,7 +47,7 @@ Airflow orchestrates ingestion, transformation, and Gold-layer model execution t
 
 Framework popularity and ecosystem health are tracked using GitHub activity, PyPI downloads, and HackerNews engagement.
 
-![Snowflake Gold Layer](docs/images/snowflake_gold.png)
+![Snowflake Gold Layer](docs/images/snowflake_gold.jpeg)
 
 Business-ready Gold models generated through dbt transformations. These tables combine GitHub activity, PyPI download trends, and HackerNews engagement into unified framework metrics, ecosystem summaries, and historical popularity snapshots for analytics and decision-making.
 
