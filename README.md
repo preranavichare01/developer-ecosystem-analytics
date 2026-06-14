@@ -35,6 +35,19 @@
 | **Dashboard** | Streamlit | Interactive Charts |
 | **CI/CD** | GitHub Actions | Auto Testing |
 
+### Airflow Orchestration
+
+![Airflow DAGs](docs/images/airflow.jpeg)
+
+Airflow orchestrates ingestion, transformation, and Gold-layer model execution through scheduled DAGs.
+
+### Framework Trend Analysis
+
+![Framework Trends](docs/images/trends.jpeg)
+
+Framework popularity and ecosystem health are tracked using GitHub activity, PyPI downloads, and HackerNews engagement.
+
+
 **Pipeline Flow:**
 
 `GitHub API` + `HackerNews API` + `PyPI API`
