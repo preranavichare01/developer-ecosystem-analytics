@@ -1,0 +1,33 @@
+[0m12:10:43.743811 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019ACDE314D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019AD2825050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019AD288D990>]}
+
+
+============================== 12:10:43.758750 | dc1c5162-ae6e-438b-9654-43da12b85120 ==============================
+[0m12:10:43.758750 [info ] [MainThread]: Running with dbt=1.11.11
+[0m12:10:43.758750 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\hp\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt init dev_ecosystem', 'indirect_selection': 'eager', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m12:10:43.788874 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\hp\.dbt
+[0m12:10:43.793034 [debug] [MainThread]: Starter project path: C:\Users\hp\AppData\Local\Programs\Python\Python311\Lib\site-packages\dbt\include\starter_project
+[0m12:10:43.876675 [info ] [MainThread]: 
+Your new dbt project "dev_ecosystem" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m12:10:43.876675 [info ] [MainThread]: Setting up your profile.
+[0m12:11:06.668799 [debug] [MainThread]: Snowflake adapter: Setting snowflake.connector to ERROR (file logging only)
+[0m12:11:06.668799 [debug] [MainThread]: Snowflake adapter: Setting botocore to ERROR (file logging only)
+[0m12:11:06.668799 [debug] [MainThread]: Snowflake adapter: Setting boto3 to ERROR (file logging only)
+[0m12:13:10.108491 [info ] [MainThread]: Profile dev_ecosystem written to C:\Users\hp\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m12:13:10.108491 [debug] [MainThread]: Command `dbt init` succeeded at 12:13:10.108491 after 146.43 seconds
+[0m12:13:10.108491 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019ACAB20290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019AEA481A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019AD27678D0>]}
+[0m12:13:10.108491 [debug] [MainThread]: Flushing usage events
+[0m12:13:11.504264 [debug] [MainThread]: An error was encountered while trying to flush usage events

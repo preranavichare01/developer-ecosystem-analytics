@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_github
+    description: "Cleaned GitHub metrics from Silver layer"
+    columns:
+      - name: FRAMEWORK_NAME
+        tests:
+          - not_null
+          - unique
+      - name: STARS_TOTAL
+        tests:
+          - not_null
+      - name: ISSUE_RESOLUTION_RATE
+        tests:
+          - not_null
+
+  - name: stg_hackernews
+    description: "Aggregated HackerNews sentiment from Silver layer"
+    columns:
+      - name: FRAMEWORK_NAME
+        tests:
+          - not_null
+      - name: SENTIMENT_SCORE
+        tests:
+          - not_null
+
+  - name: stg_pypi
+    description: "PyPI weekly downloads from Silver layer"
+    columns:
+      - name: FRAMEWORK_NAME
+        tests:
+          - not_null
+          - unique
+      - name: WEEKLY_DOWNLOADS
+        tests:
+          - not_null

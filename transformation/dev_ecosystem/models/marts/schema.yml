@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fact_framework_weekly_metrics
+    description: "Gold layer — all signals unified with composite scores"
+    columns:
+      - name: FRAMEWORK_NAME
+        tests:
+          - not_null
+      - name: POPULARITY_SCORE
+        tests:
+          - not_null
+      - name: HEALTH_INDEX
+        tests:
+          - not_null
+      - name: SENTIMENT_SCORE
+        tests:
+          - not_null
+
+  - name: ecosystem_weekly_summary
+    description: "Weekly summary — top frameworks by each metric"
+    columns:
+      - name: WEEK_START
+        tests:
+          - not_null
+      - name: TOP_FRAMEWORK
+        tests:
+          - not_null
