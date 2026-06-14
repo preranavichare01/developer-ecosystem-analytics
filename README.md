@@ -1,5 +1,5 @@
 # Developer Ecosystem Analytics Platform
-
+![Pipeline CI](https://github.com/preranavichare01/developer-ecosystem-analytics/actions/workflows/pipeline_ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Snowflake](https://img.shields.io/badge/Snowflake-Enterprise-29B5E8?logo=snowflake)
 ![dbt](https://img.shields.io/badge/dbt-1.11.5-FF694B?logo=dbt)
@@ -47,6 +47,9 @@ Airflow orchestrates ingestion, transformation, and Gold-layer model execution t
 
 Framework popularity and ecosystem health are tracked using GitHub activity, PyPI downloads, and HackerNews engagement.
 
+![Snowflake Gold Layer](docs/images/snowflake_gold.png)
+
+Business-ready Gold models generated through dbt transformations. These tables combine GitHub activity, PyPI download trends, and HackerNews engagement into unified framework metrics, ecosystem summaries, and historical popularity snapshots for analytics and decision-making.
 
 **Pipeline Flow:**
 
