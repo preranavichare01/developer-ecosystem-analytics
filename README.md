@@ -37,13 +37,13 @@
 
 ### Airflow Orchestration
 
-![Airflow DAGs](docs/images/airflow.jpeg)
+![Airflow DAGs](docs/images/airflow_dags.jpeg)
 
 Airflow orchestrates ingestion, transformation, and Gold-layer model execution through scheduled DAGs.
 
 ### Framework Trend Analysis
 
-![Framework Trends](docs/images/trends.jpeg)
+![Framework Trends](docs/images/dbt_lineage.jpeg)
 
 Framework popularity and ecosystem health are tracked using GitHub activity, PyPI downloads, and HackerNews engagement.
 
