@@ -1,6 +1,5 @@
 # Developer Ecosystem Analytics Platform
 
-![Pipeline CI](https://github.com/preranavichare01/developer-ecosystem-analytics/actions/workflows/pipeline_ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Snowflake](https://img.shields.io/badge/Snowflake-Enterprise-29B5E8?logo=snowflake)
 ![dbt](https://img.shields.io/badge/dbt-1.11.5-FF694B?logo=dbt)
@@ -21,33 +20,31 @@
 ---
 
 ## 🏗️ Architecture
-GitHub API ──────┐
 
-               ├──► Python Ingesters ──► Airflow DAGs ──► Snowflake BRONZE
+**Data Sources → Ingestion → Storage → Transformation → Consumption**
 
-HackerNews API ──┤                                               │
+| Stage | Tools | Output |
+|---|---|---|
+| **Sources** | GitHub API, HackerNews API, PyPI Stats | Raw JSON |
+| **Ingestion** | Python + Requests + pypistats | Snowflake BRONZE |
+| **Orchestration** | Apache Airflow (Docker) | Scheduled DAGs |
+| **Processing** | Pandas | Snowflake SILVER |
+| **Transformation** | dbt-snowflake | Snowflake GOLD |
+| **Quality** | Great Expectations | Validation Reports |
+| **AI Layer** | GPT-4o API | Trend Report |
+| **Dashboard** | Streamlit | Interactive Charts |
+| **CI/CD** | GitHub Actions | Auto Testing |
 
-  │                                    Pandas Transformation
+**Pipeline Flow:**
 
-PyPI Stats API ──┘                                               │
-
-                           Snowflake SILVER
-
-                              │
-
-                                                  dbt models
-
-                                            │
-
-                     Snowflake GOLD
-
-                                                           │
-
-                       ┌────────────────────┼─────────────┐
-
-                                  GPT-4o Agent        Streamlit        GitHub
-
-    Trend Report        Dashboard        Actions
+`GitHub API` + `HackerNews API` + `PyPI API`
+→ **Python Ingesters** (rate limiting, DLQ, schema drift)
+→ **Snowflake BRONZE** (raw append-only)
+→ **Pandas Transformation** (clean, deduplicate, normalise)
+→ **Snowflake SILVER** (typed, standardised)
+→ **dbt Models** (composite scores, SCD Type 2)
+→ **Snowflake GOLD** (business metrics)
+→ **Streamlit Dashboard** + **GPT-4o Report**
 
 ---
 
@@ -78,30 +75,23 @@ PyPI Stats API ──┘                                               │
 | **PyPI Stats API** | Weekly downloads, growth rate | Weekly | 15 packages |
 
 ---
-
 ## 🏅 Medallion Architecture (Snowflake)
-BRONZE (Raw)          SILVER (Clean)              GOLD (Business)
 
-─────────────         ──────────────              ───────────────
-
-GITHUB_REPOS_RAW  →   FACT_GITHUB_WEEKLY      →   FACT_FRAMEWORK_WEEKLY_METRICS
-
-GITHUB_EXTENDED   →   FACT_HN_WEEKLY          →   ECOSYSTEM_WEEKLY_SUMMARY
-
-HN_POSTS_RAW      →   FACT_PYPI_WEEKLY        →   FRAMEWORK_POPULARITY_SNAPSHOT
-
-PYPI_DOWNLOADS    →                               (SCD Type 2)
-
+| Layer | Bronze (Raw) | Silver (Clean) | Gold (Business) |
+|---|---|---|---|
+| **GitHub** | GITHUB_REPOS_RAW | FACT_GITHUB_WEEKLY | FACT_FRAMEWORK_WEEKLY_METRICS |
+| **GitHub** | GITHUB_EXTENDED_RAW | — | ECOSYSTEM_WEEKLY_SUMMARY |
+| **HackerNews** | HACKERNEWS_POSTS_RAW | FACT_HN_WEEKLY | FRAMEWORK_POPULARITY_SNAPSHOT (SCD Type 2) |
+| **PyPI** | PYPI_DOWNLOADS_RAW | FACT_PYPI_WEEKLY | — |
 ---
 
 ## 📈 Composite Scoring Model
-Popularity Score  = GitHub Stars (35%) + PyPI Downloads (25%)
 
-+ Commits 30d (20%) + HN Story Count (20%)Sentiment Score   = HN Sentiment (50%) + Issue Resolution Rate (30%)
-
-+ PR Merge Rate (20%)Health Index      = Popularity Score (40%) + Sentiment Score (30%)
-
-+ Commit Velocity (20%) + Issue Debt (10%)
+| Score | Formula |
+|---|---|
+| **Popularity Score** | GitHub Stars (35%) + PyPI Downloads (25%) + Commits 30d (20%) + HN Story Count (20%) |
+| **Sentiment Score** | HN Sentiment (50%) + Issue Resolution Rate (30%) + PR Merge Rate (20%) |
+| **Health Index** | Popularity Score (40%) + Sentiment Score (30%) + Commit Velocity (20%) + Issue Debt (10%) |
 
 All scores normalised 0–1 using min-max scaling.
 
@@ -121,63 +111,38 @@ All scores normalised 0–1 using min-max scaling.
 | **Run Logging** | Every pipeline run logged to MONITORING.INGESTION_LOG |
 
 ---
-
 ## 📁 Project Structure
+
+```
 developer-ecosystem-analytics/
-
 ├── ingestion/
-
-│   ├── github/           ← GitHub API ingester
-
-│   ├── hackernews/       ← HackerNews Algolia ingester
-
-│   ├── pypi/             ← PyPI Stats ingester
-
-│   └── utils/            ← Shared utilities (DLQ, anomaly, schema)
-
+│   ├── github/            ← GitHub API ingester
+│   ├── hackernews/        ← HackerNews Algolia ingester
+│   ├── pypi/              ← PyPI Stats ingester
+│   └── utils/             ← Shared utilities (DLQ, anomaly, schema)
 ├── processing/
-
-│   └── bronze_to_silver/ ← Pandas transformation pipeline
-
+│   └── bronze_to_silver/  ← Pandas transformation pipeline
 ├── transformation/
-
-│   └── dev_ecosystem/    ← dbt project
-
+│   └── dev_ecosystem/     ← dbt project
 │       ├── models/
-
-│       │   ├── staging/       ← Views on Silver tables
-
-│       │   ├── intermediate/  ← Joined models
-
-│       │   └── marts/         ← Gold business metrics
-
-│       └── snapshots/         ← SCD Type 2
-
+│       │   ├── staging/        ← Views on Silver tables
+│       │   ├── intermediate/   ← Joined models
+│       │   └── marts/          ← Gold business metrics
+│       └── snapshots/          ← SCD Type 2
 ├── orchestration/
-
-│   ├── dags/             ← 5 Airflow DAGs
-
+│   ├── dags/              ← 5 Airflow DAGs
 │   └── docker-compose.yml
-
 ├── quality/
-
-│   └── expectations/     ← Great Expectations validation
-
-├── ai_layer/             ← GPT-4o trend report (coming)
-
-├── dashboard/            ← Streamlit dashboard (coming)
-
+│   └── expectations/      ← Great Expectations validation
+├── ai_layer/              ← GPT-4o trend report
+├── dashboard/             ← Streamlit dashboard
 ├── .github/
-
-│   └── workflows/        ← GitHub Actions CI/CD
-
+│   └── workflows/         ← GitHub Actions CI/CD
 └── config/
-
-├── expected_schemas.yaml
-
-├── framework_keywords.yaml
-
-└── pypi_packages.yaml
+    ├── expected_schemas.yaml
+    ├── framework_keywords.yaml
+    └── pypi_packages.yaml
+```
 
 ---
 
