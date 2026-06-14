@@ -1,5 +1,5 @@
 # Developer Ecosystem Analytics Platform
-![Pipeline CI](https://github.com/preranavichare01/developer-ecosystem-analytics/actions/workflows/pipeline_ci.yml/badge.svg)
+
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Snowflake](https://img.shields.io/badge/Snowflake-Enterprise-29B5E8?logo=snowflake)
 ![dbt](https://img.shields.io/badge/dbt-1.11.5-FF694B?logo=dbt)
@@ -34,22 +34,6 @@
 | **AI Layer** | GPT-4o API | Trend Report |
 | **Dashboard** | Streamlit | Interactive Charts |
 | **CI/CD** | GitHub Actions | Auto Testing |
-
-### Airflow Orchestration
-
-![Airflow DAGs](docs/images/airflow_dags.jpeg)
-
-Airflow orchestrates ingestion, transformation, and Gold-layer model execution through scheduled DAGs.
-
-### Framework Trend Analysis
-
-![Framework Trends](docs/images/dbt_lineage.jpeg)
-
-Framework popularity and ecosystem health are tracked using GitHub activity, PyPI downloads, and HackerNews engagement.
-
-![Snowflake Gold Layer](docs/images/snowflake_gold.jpeg)
-
-Business-ready Gold models generated through dbt transformations. These tables combine GitHub activity, PyPI download trends, and HackerNews engagement into unified framework metrics, ecosystem summaries, and historical popularity snapshots for analytics and decision-making.
 
 **Pipeline Flow:**
 
@@ -273,6 +257,35 @@ python quality/expectations/validate_bronze.py
 | Rate Limit Handling | X-RateLimit header reading + exponential backoff |
 
 ---
+## 📸 Project Screenshots
+
+
+### Streamlit Dashboard — Main Page
+![Main Index](docs/images/page1.jpeg)
+
+### Streamlit Dashboard — Framework Health Index
+![Health Index](docs/images/streamlit_health.png)
+
+### Streamlit Dashboard — Popularity vs Sentiment
+![Scatter Plot](docs/images/streamlit_scatter.png)
+
+### Streamlit Dashboard — PyPI Downloads
+![Downloads](docs/images/streamlit_downloads.png)
+
+### Streamlit Dashboard — GitHub Stars & PR Merge Rate
+![GitHub](docs/images/PRmerge.png)
+
+### Streamlit Dashboard — AI Trend Report Panel
+![AI Report](docs/images/ai_report.jpg)
+
+### Airflow — All 5 DAGs Running
+![Airflow DAGs](docs/images/airflow_dags.jpeg)
+
+### dbt Lineage Graph
+![dbt Lineage](docs/images/dbt_lineage.jpeg)
+
+### Snowflake Gold Layer Data
+![Snowflake Gold](docs/images/snowflake_gold.jpeg)
 
 ## 👤 Author
 
